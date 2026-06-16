@@ -1,0 +1,165 @@
+%%
+%% This is file `tudcdfonts.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% tudcd-common.dtx  (with options: `identification,package,pre')
+%% tudcd-fonts.dtx  (with options: `identification,package')
+%% tudcd-common.dtx  (with options: `identification,package,post')
+%% tudcd-common.dtx  (with options: `prelim-declaration,package')
+%% tudcd-fonts.dtx  (with options: `prelim-declaration,package')
+%% tudcd-common.dtx  (with options: `option,pre,package')
+%% tudcd-common.dtx  (with options: `option,peri,package')
+%% tudcd-fonts.dtx  (with options: `option-useserif,peri,package')
+%% tudcd-common.dtx  (with options: `option,post,package')
+%% tudcd-common.dtx  (with options: `optionloading,pre,package')
+%% tudcd-common.dtx  (with options: `optionloading,peri,package')
+%% tudcd-common.dtx  (with options: `optionloading,post,package')
+%% tudcd-common.dtx  (with options: `header,peri,package')
+%% tudcd-fonts.dtx  (with options: `header,peri,package')
+%% tudcd-common.dtx  (with options: `body,pre,package')
+%% tudcd-fonts.dtx  (with options: `body,peri,package')
+%% tudcd-common.dtx  (with options: `body,post,package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2025 Jochen Diepelt
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3c or later is part of all distributions of
+%% LaTeX version 2025-05-04 or later.
+%% 
+%% START IDENTIFICATION
+\NeedsTeXFormat{LaTeX2e}[2023/08/03]
+\RequirePackage{expl3}
+\providecommand\tudcd@common@version{0.7.1}
+\providecommand\tudcd@common@date{2026/04/22}
+\ProvidesExplPackage{tudcdfonts}{\tudcd@common@date}{\tudcd@common@version}{Ein Paket für die Konfiguration der Schriften im Corporate Design der TU Dresden}
+\ProvideDocumentCommand\TUDCDoptions{m}{
+  \keys_set:nn{ tudcd }{ #1 }
+}
+\ProvideDocumentCommand\TUDCDsetup{m}{
+  \keys_set:nn{ tudcd }{ #1 }
+}
+\bool_new:N\l__tudcd_use_seriffont_bool
+\dim_const:Nn\c__tudcd_typo_point_dim{73015sp}
+\newlength\tudpt%
+\setlength\tudpt{\c__tudcd_typo_point_dim}
+%% START OPTIONS
+\keys_define:nn { tudcd }{
+  useseriffont .bool_set:N = \l__tudcd_use_seriffont_bool,
+  useseriffont .usage:n = preamble,
+  useseriffont .default:n = true,
+  useseriffont .initial:n = false,
+}
+%% START OPTIONLOADING
+\ProcessKeyOptions[tudcd]
+\msg_if_exist:nnF {tudcd}{options/latekeyerror}{
+\msg_new:nnnn{ tudcd }{ options/latekeyerror }{ You~have~used~key~'#1',~which~can~only~be~set~inside~the~preamble! }{
+  The~key~'#1'~must~be~set~in~\iow_char:N\\ TUDCDsetup\{ ... \}.
+}
+\hook_gput_code:nnn{ begindocument/before }{ tudcd/lateoptioninvalidation }{
+  \prop_map_inline:Nn \l_keys_usage_preamble_prop {
+    \clist_map_inline:nn { #2 } {
+      \keys_define:nn { #1 } { ##1 .undefine: }% Entfernen des Keys
+      \keys_define:nn { #1 } { ##1 .code:n = {
+        \msg_error:nnn{ tudcd }{ options/latekeyerror }{ ##1 }
+        }
+      }
+    }
+  }
+}
+}
+%% START BODY
+\bool_if:nF{\l__tudcd_use_seriffont_bool}{
+  % Falls nicht die Serifenschrift verwendet werden soll, wird der Default auf die Serifenlose gesetzt.
+  \PassOptionsToPackage{sfdefault}{notomath}
+  \renewcommand*{\familydefault}{\sfdefault}
+}
+\PassOptionsToPackage{semibold,medium}{noto-sans}
+\PassOptionsToPackage{semibold,medium}{noto-serif}
+\RequirePackage{notomath}
+\bool_new:N\l__tudcd_if_engine_opentype_bool
+
+\cs_if_exist_use:NTF\sys_if_engine_opentype:TF{
+  {\bool_set_true:N\l__tudcd_if_engine_opentype_bool}
+  {\bool_set_false:N\l__tudcd_if_engine_opentype_bool}
+}{
+\RequirePackage{iftex}
+\legacy_if:nTF{tutex}
+  {\bool_set_true:N\l__tudcd_if_engine_opentype_bool}
+  {\bool_set_false:N\l__tudcd_if_engine_opentype_bool}
+}
+
+\bool_if:nTF{\l__tudcd_if_engine_opentype_bool}{
+\RequirePackage{fontspec}
+  % Hier wird LuaTeX oder XeTeX verwendet
+\setmonofont{NotoSansMono}[
+  UprightFont=*-Medium,
+  BoldFont=*-SemiBold,
+  FontFace={ul}{n}{*-Thin},
+  FontFace={el}{n}{*-ExtraLight},
+  FontFace={l}{n}{*-Light},
+  FontFace={sb}{n}{*-SemiBold},
+  FontFace={b}{n}{*-Bold},
+  FontFace={eb}{n}{*-ExtraBold},
+  FontFace={ub}{n}{*-Black},
+  FontFace = {medium}{n}{*-Medium},
+  FontFace = {sb}{n}{*-SemiBold}
+]
+\defaultfontfeatures{
+  UprightFont=*-Medium,
+  ItalicFont=*-MediumItalic,
+  BoldFont=*-SemiBold,
+  BoldItalicFont=*-SemiBoldItalic,
+  FontFace={ul}{n}{*-Thin},
+  FontFace={ul}{it}{*-ThinItalic},
+  FontFace={el}{n}{*-ExtraLight},
+  FontFace={el}{it}{*-ExtraLightItalic},
+  FontFace={l}{n}{*-Light},
+  FontFace={l}{it}{*-LightItalic},
+  FontFace={sb}{n}{*-SemiBold},
+  FontFace={sb}{it}{*-SemiBoldItalic},
+  FontFace={b}{n}{*-Bold},
+  FontFace={b}{it}{*-BoldItalic},
+  FontFace={eb}{n}{*-ExtraBold},
+  FontFace={eb}{it}{*-ExtraBoldItalic},
+  FontFace={ub}{n}{*-Black},
+  FontFace={ub}{it}{*-BlackItalic},
+  FontFace = {medium}{n}{*-Medium},
+  FontFace = {medium}{it}{*-MediumItalic},
+}
+\setmainfont{NotoSerif}
+\setsansfont{NotoSans}
+}{ % Hier ist pdfTeX verwendet worden.
+\renewcommand*{\bfdefault}{sb}
+\renewcommand*{\mddefault}{medium}
+}
+\DeclareRobustCommand{\cdulseries}{\fontseries{ul}\selectfont}
+\DeclareTextFontCommand{\textcdul}{\cdulseries}
+\DeclareRobustCommand{\cdelseries}{\fontseries{el}\selectfont}
+\DeclareTextFontCommand{\textcdel}{\cdelseries}
+\DeclareRobustCommand{\cdlseries}{\fontseries{l}\selectfont}
+\DeclareTextFontCommand{\textcdl}{\cdlseries}
+\DeclareRobustCommand{\cdslseries}{\fontseries{m}\selectfont}
+\DeclareTextFontCommand{\textcdsl}{\cdslseries}
+\DeclareRobustCommand{\cdmseries}{\fontseries{medium}\selectfont}
+\DeclareTextFontCommand{\textcdm}{\cdmseries}
+\DeclareRobustCommand{\cdsbseries}{\fontseries{sb}\selectfont}
+\DeclareTextFontCommand{\textcdsb}{\cdsbseries}
+\DeclareRobustCommand{\cdbseries}{\fontseries{b}\selectfont}
+\DeclareTextFontCommand{\textcdb}{\cdbseries}
+\DeclareRobustCommand{\cdebseries}{\fontseries{eb}\selectfont}
+\DeclareTextFontCommand{\textcdeb}{\cdebseries}
+\DeclareRobustCommand{\cdubseries}{\fontseries{ub}\selectfont}
+\DeclareTextFontCommand{\textcdub}{\cdubseries}
+\endinput
+%%
+%% End of file `tudcdfonts.sty'.

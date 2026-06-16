@@ -1,0 +1,44 @@
+\begin{frame}{Event-Driven \& Spiking Mamba for Speech Recognition}
+  \framesubtitle{Word Error Rate}
+  \centering
+     \includegraphics[width=0.4\textwidth]{figures/wer.pdf}
+     \begin{table}[ht]
+     {\fontsize{5}{6}\selectfont
+         \centering
+         \begin{tabular}{lcccc}
+         \toprule
+         \multirow{2}{*}{\textbf{Model Architecture}} &
+         \multicolumn{4}{c}{\textbf{WER(\%) Librispeech 960h}} \\
+         \cmidrule(lr){2-5}
+         & \textbf{dev-clean} & \textbf{dev-other} & \textbf{test-clean} & \textbf{test-other} \\
+         \midrule
+         Base         & 2.30 & 5.51 & 2.47 & 5.86 \\
+         E-SpeechMamba (Optimized) & 3.10 & 7.80 & 3.60 & 8.30 \\
+         S-SpeechMamba & 4.27 & 9.34 & 4.71 & 9.98 \\
+         \bottomrule
+         \end{tabular}}
+         \label{tab:wer_results}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Event-Driven \& Spiking Mamba for Speech Recognition}
+  \framesubtitle{Hardware Metrics}
+
+
+\begin{columns}[c,onlytextwidth]
+
+% ---------- IMAGE ----------
+\begin{column}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/cpucycles.pdf}
+\end{column}
+\begin{column}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/latency.pdf}
+\end{column}
+
+
+\end{columns}
+
+
+\end{frame}

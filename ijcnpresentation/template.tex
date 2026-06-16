@@ -1,0 +1,115 @@
+% ── TUD CD packages ─────────────────────────────────────────────────
+\usepackage{tudcdcolor}
+\usepackage{tudcdfonts}
+
+% ── Override Dove's black structure with TUD Brilliantblau ────────────────────
+% Dove sets everything via `structure`, so this one line cascades to
+% titlelike, frametitle, section/subsection in nav bar, block titles, items
+\setbeamercolor{structure}{fg=Brilliantblau}
+
+% Title page
+\setbeamercolor{title}             {fg=Brilliantblau}
+\setbeamercolor{subtitle}          {fg=Brilliantblau}
+\setbeamercolor{author}            {fg=Brilliantblau}
+\setbeamercolor{institute}         {fg=Brilliantblau}
+\setbeamercolor{date}              {fg=Brilliantblau}
+
+% Frame titles
+\setbeamercolor{frametitle}        {fg=Brilliantblau, bg=white}
+\setbeamercolor{framesubtitle}     {fg=Grau80}
+
+% Nav bar (Berlin mini-frames) — Dove leaves these white/black, give them TUD tones
+\setbeamercolor{palette primary}   {fg=Brilliantblau}
+\setbeamercolor{palette secondary} {fg=Dunkelblau}
+\setbeamercolor{palette tertiary}  {fg=Blau1}
+\setbeamercolor{palette quaternary}{fg=Brill}
+% Section/subsection labels in the nav bar inherit from palette — already set above
+\setbeamercolor{section in head/foot}   {fg=Brilliantblau}
+\setbeamercolor{subsection in head/foot}{fg=Dunkelblau}
+
+% Blocks — Dove inherits from structure/alerted/example text; refine here
+\setbeamercolor{block title}         {fg=Brilliantblau, bg=Grau20}
+\setbeamercolor{block body}          {fg=Schwarz,       bg=Grau10}
+\setbeamercolor{block title example} {fg=Weiss,         bg=Violett1}
+\setbeamercolor{block body example}  {fg=Schwarz,       bg=Violett2}
+\setbeamercolor{block title alerted} {fg=Weiss,         bg=Rot1}
+\setbeamercolor{block body alerted}  {fg=Schwarz,       bg=Rot2}
+
+\setbeamercolor{alerted text}        {fg=Rot1}
+\setbeamercolor{item projected}      {fg=white, bg=Brilliantblau}
+
+\setbeamercolor{itemize item}        {fg=Brilliantblau}
+\setbeamercolor{itemize subitem}     {fg=Blau1}
+\setbeamercolor{itemize subsubitem}  {fg=Blau2}
+ 
+\setbeamertemplate{itemize item}     {\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}  {\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+\setbeamertemplate{itemize subsubitem}{\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+ 
+% ── Blue triangles for enumerate and TOC too ──────────────────────────────────
+\setbeamercolor{item projected}      {fg=white, bg=Brilliantblau}
+\setbeamertemplate{enumerate item}   {\usebeamercolor[bg]{item projected}\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}~\insertenumlabel}
+ 
+\setbeamercolor{section in toc}      {fg=Brilliantblau}
+\setbeamercolor{subsection in toc}   {fg=Blau1}
+\setbeamertemplate{sections/subsections in toc}[ball]
+\setbeamertemplate{section in toc}{%
+  {\color{Brilliantblau}$\blacktriangleright$}~\inserttocsection}
+\setbeamertemplate{subsection in toc}{%
+  \hspace{1em}{\color{Blau1}$\blacktriangleright$}~\inserttocsubsection\par}
+
+\setbeamerfont{normal~text}{size*={9\tudpt}{11\tudpt},shape=\upshape,series=\cdslseries}
+\setbeamerfont{structure}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{alerted~text}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{tiny~structure}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{title}{size*={19\tudpt}{21\tudpt},series=\bfseries}
+\setbeamerfont{subtitle}{size*={9\tudpt}{11\tudpt},shape=\upshape}
+\setbeamerfont{author/simple~title}{size*={9\tudpt}{11\tudpt},series=\cdmseries}
+\setbeamerfont{frametitle}{size*={15\tudpt}{17\tudpt},shape=\upshape}
+\setbeamerfont{framesubtitle}{size*={13\tudpt}{17\tudpt}}
+\setbeamerfont{parttitle}{size*={17\tudpt}{21\tudpt},shape=\upshape}
+\setbeamerfont{partsubtitle}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{footline}{size*={5.5\tudpt}{7\tudpt},shape=\upshape}
+\setbeamerfont{footline/simple~title}{size*={8\tudpt}{9\tudpt},shape=\upshape} % 9pt != 9pt ?
+\setbeamerfont{block}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{block~title}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{item}{size*={9\tudpt}{11\tudpt}}
+\setbeamerfont{caption}{size*={5.5\tudpt}{7\tudpt},series=\cdslseries,shape=\rmfamily}
+% ── Metadata ──────────────────────────────────────────────────────────────────
+
+
+\setbeamertemplate{title page}{
+  \begin{minipage}[t][\paperheight]{\textwidth}
+    \vspace*{1cm}  % adjust this to move title up/down
+    \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
+    \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
+    \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
+    %\usebeamertemplate*{title separator}
+    
+    \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
+    \vfill
+    \centering
+    \ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi
+    \vspace*{1mm}
+  \end{minipage}
+}
+
+
+%\addtobeamertemplate{footline}{%
+%  \usebeamercolor[fg]{page number in head/foot}%
+%  \usebeamerfont{page number in head/foot}%
+%  \insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt%
+%}{}
+
+%\addtobeamertemplate{navigation symbols}{}{%
+%    \usebeamerfont{footline}%
+%    \usebeamercolor[fg]{footline}%
+%    \hspace{1em}%
+%    \textbf{\insertframenumber}/\inserttotalframenumber
+%}
+
+\documentclass[tikz, border=12pt]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, backgrounds}

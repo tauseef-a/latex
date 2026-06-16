@@ -1,0 +1,151 @@
+%%
+%% This is file `tudcdcolor.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% tudcd-common.dtx  (with options: `identification,package,pre')
+%% tudcd-colors.dtx  (with options: `identification,package')
+%% tudcd-common.dtx  (with options: `identification,package,post')
+%% tudcd-common.dtx  (with options: `prelim-declaration,package')
+%% tudcd-common.dtx  (with options: `option,pre,package')
+%% tudcd-common.dtx  (with options: `option,peri,package')
+%% tudcd-colors.dtx  (with options: `option,peri,package')
+%% tudcd-common.dtx  (with options: `option,post,package')
+%% tudcd-common.dtx  (with options: `optionloading,pre,package')
+%% tudcd-common.dtx  (with options: `optionloading,peri,package')
+%% tudcd-common.dtx  (with options: `optionloading,post,package')
+%% tudcd-common.dtx  (with options: `header,peri,package')
+%% tudcd-colors.dtx  (with options: `header,peri,package')
+%% tudcd-common.dtx  (with options: `body,pre,package')
+%% tudcd-common.dtx  (with options: `body,post,package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2025 Jochen Diepelt
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3c or later is part of all distributions of
+%% LaTeX version 2025-05-04 or later.
+%% 
+%% START IDENTIFICATION
+\NeedsTeXFormat{LaTeX2e}[2023/08/03]
+\RequirePackage{expl3}
+\providecommand\tudcd@common@version{0.7.1}
+\providecommand\tudcd@common@date{2026/04/22}
+\ProvidesExplPackage{tudcdcolor}{\tudcd@common@date}{\tudcd@common@version}{Ein Paket für die Konfiguration der Farben des Corporate Design der TU Dresden}
+\ProvideDocumentCommand\TUDCDoptions{m}{
+  \keys_set:nn{ tudcd }{ #1 }
+}
+\ProvideDocumentCommand\TUDCDsetup{m}{
+  \keys_set:nn{ tudcd }{ #1 }
+}
+%% START OPTIONS
+\keys_define:nn { tudcd }{
+  color .code:n = {
+    \keys_set:nn{ tudcd / color }{ #1 }
+  },
+  color/highlight-color .tl_set:N = \l__tudcd_highlight_color_tl,
+  color/highlight-color .initial:n = {Brilliantblau},
+  color/secondary-color .tl_set:N = \l__tudcd_background_color_tl,
+  color/secondary-color .initial:n = {Weiss},
+  color/tertiary-color .tl_set:N = \l__tudcd_second_background_color_tl,
+  color/tertiary-color .initial:n = {.},
+  color/model .choices:nn = {
+    rgb, cmyk
+  }{
+    \str_case:VnF\l_keys_choice_tl{
+      {rgb}{
+        \tl_set:Nn\l_color_fixed_model_tl{rgb}
+      }
+      {cmyk}{
+        \tl_set:Nn\l_color_fixed_model_tl{cmyk}
+      }
+    }{
+    }
+  },
+  color/model .initial:n = rgb,
+}
+%% START OPTIONLOADING
+\ProcessKeyOptions[tudcd]
+\msg_if_exist:nnF {tudcd}{options/latekeyerror}{
+\msg_new:nnnn{ tudcd }{ options/latekeyerror }{ You~have~used~key~'#1',~which~can~only~be~set~inside~the~preamble! }{
+  The~key~'#1'~must~be~set~in~\iow_char:N\\ TUDCDsetup\{ ... \}.
+}
+\hook_gput_code:nnn{ begindocument/before }{ tudcd/lateoptioninvalidation }{
+  \prop_map_inline:Nn \l_keys_usage_preamble_prop {
+    \clist_map_inline:nn { #2 } {
+      \keys_define:nn { #1 } { ##1 .undefine: }% Entfernen des Keys
+      \keys_define:nn { #1 } { ##1 .code:n = {
+        \msg_error:nnn{ tudcd }{ options/latekeyerror }{ ##1 }
+        }
+      }
+    }
+  }
+}
+}
+\RequirePackage{xcolor}
+\cs_new:Nn \__tudcd_definecolor:nnn
+{
+  \color_set:nnn{#1}{#2}{#3}
+  \definecolor{#1}{#2}{#3}%
+}
+%% Primärfarben
+\__tudcd_definecolor:nnn{Brilliantblau}{RGB/cmyk}{0,0,140/1,0.80,0.05,0}%
+\__tudcd_definecolor:nnn{Dunkelblau}{RGB/cmyk}{0,20,80/1,0.70,0.10,0.60}%
+%% Sekundärfarben
+\__tudcd_definecolor:nnn{Blau1}{RGB/cmyk}{47,87,178/0.90,0.50,0,0}%
+\__tudcd_definecolor:nnn{Blau2}{RGB/cmyk}{151,198,255/0.43,0.15,0,0}%
+\__tudcd_definecolor:nnn{Violett1}{RGB/cmyk}{115,105,190/0.64,0.62,0,0}%
+\__tudcd_definecolor:nnn{Violett2}{RGB/cmyk}{200,200,255/0.20,0.20,0,0}%
+\__tudcd_definecolor:nnn{Magenta1}{RGB/cmyk}{188,21,137/0.30,0.96,0,0}%
+\__tudcd_definecolor:nnn{Magenta2}{RGB/cmyk}{255,185,255/0.0,0.30,0.0,0.0}%
+\__tudcd_definecolor:nnn{Rot1}{RGB/cmyk}{210,15,65/0,1,0.60,0}%
+\__tudcd_definecolor:nnn{Rot2}{RGB/cmyk}{255,170,165/0,0.44,0.27,0}%
+\__tudcd_definecolor:nnn{Orange1}{RGB/cmyk}{200,80,0/0,0.90,1,0.20}%
+\__tudcd_definecolor:nnn{Orange2}{RGB/cmyk}{255,190,120/0,0.30,0.55,0}%
+\__tudcd_definecolor:nnn{Gelb1}{RGB/cmyk}{255,199,0/0,0.25,1,0}%
+\__tudcd_definecolor:nnn{Gelb2}{RGB/cmyk}{255,228,131/0,0.05,0.50,0}%
+\__tudcd_definecolor:nnn{Oliv1}{RGB/cmyk}{118,122,35/0.50,0.35,1,0.22}%
+\__tudcd_definecolor:nnn{Oliv2}{RGB/cmyk}{210,220,70/0.25,0,0.81,0}%
+\__tudcd_definecolor:nnn{Gruen1}{RGB/cmyk}{0,125,75/0.90,0,0.80,0.15}%
+\__tudcd_definecolor:nnn{Gruen2}{RGB/cmyk}{140,230,170/0.45,0,0.45,0}%
+\__tudcd_definecolor:nnn{Tuerkis1}{RGB/cmyk}{10,119,127/1,0.10,0.30,0.40}%
+\__tudcd_definecolor:nnn{Tuerkis2}{RGB/cmyk}{140,230,215/0.45,0.0,0.20,0.0}%
+%% Nichtfarbige
+\__tudcd_definecolor:nnn{Schwarz}{RGB/cmyk}{0,0,0/0,0,0,1}%
+\__tudcd_definecolor:nnn{Weiss}{RGB/cmyk}{255,255,255/0,0,0,0}%
+\__tudcd_definecolor:nnn{Grau100}{RGB/cmyk}{50,63,75/45,20,5,80}%
+\__tudcd_definecolor:nnn{Grau80}{RGB/cmyk}{86,99,113/36,16,4,64}%
+\__tudcd_definecolor:nnn{Grau60}{RGB/cmyk}{125,136,148/27,12,3,48}%
+\__tudcd_definecolor:nnn{Grau40}{RGB/cmyk}{165,174,184/18,8,2,32}%
+\__tudcd_definecolor:nnn{Grau20}{RGB/cmyk}{208,213,220/9,4,1,16}%
+\__tudcd_definecolor:nnn{Grau10}{RGB/cmyk}{231,233,237/5,2,1,8}%
+
+\colorlet{highlightcolor}{\tl_use:N\l__tudcd_highlight_color_tl}
+\colorlet{secondarycolor}{\tl_use:N\l__tudcd_background_color_tl}
+\colorlet{tertiarycolor} {\tl_use:N\l__tudcd_second_background_color_tl}
+\keys_define:nn { tudcd }{
+  color/highlight-color .code:n = {
+    \tl_set:Nn\l__tudcd_highlight_color_tl{#1}
+    \colorlet{highlightcolor}{#1}
+  },
+  color/secondary-color .code:n = {
+    \tl_set:Nn\l__tudcd_background_color_tl{#1}
+    \colorlet{secondarycolor}{#1}
+  },
+  color/tertiary-color  .code:n = {
+    \tl_set:Nn\l__tudcd_second_background_color_tl{#1}
+    \colorlet{tertiarycolor}{#1}
+  }
+}
+%% START BODY
+\endinput
+%%
+%% End of file `tudcdcolor.sty'.

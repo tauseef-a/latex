@@ -1,0 +1,69 @@
+
+\begin{tikzpicture}[
+    node distance = 1.2cm,
+    block/.style = {
+        rectangle,
+        draw = black,
+        thick,
+        rounded corners = 4pt,
+        fill = blue!6,
+        text width = 8.5cm,
+        align = left,
+        inner sep = 10pt,
+        minimum height = 2.4cm,
+        font = \fontsize{15}{15}\selectfont
+    },
+    stagelabel/.style = {
+        circle,
+        draw = black,
+        thick,
+        fill = orange!25,
+        minimum size = 0.9cm,
+        font = \bfseries\small
+    },
+    arrow/.style = {
+        -{Latex[length=3mm, width=2.5mm]},
+        thick
+    }
+]
+
+% ---------- Stage 1 ----------
+\node[block] (stage1) {%
+    \textbf{Introducing Sparsity}\\[20pt]
+    ReLU activation is inserted before the operationally expensive layers
+};
+\node[stagelabel, above=8pt of stage1.north] (label1) {1};
+
+% ---------- Stage 2 ----------
+\node[block, right=of stage1] (stage2) {%
+    \textbf{Thresholding}\\[4pt]
+    Replace ReLU with FATReLU
+    with a learnable threshold $T$:
+    \[
+        \text{FATReLU}(x) =
+        \begin{cases}
+            x & \text{if } x \ge T, \\
+            0 & \text{otherwise}.
+        \end{cases}
+    \]
+};
+\node[stagelabel, above=8pt of stage2.north] (label2) {2};
+
+% ---------- Stage 3 ----------
+\node[block, right=of stage2] (stage3) {%
+    \textbf{Fine-tuning with Regularization}\\[4pt]
+    Penalize large activation magnitude and encourage larger thresholds $T_i$:
+    \[
+        L_{\mathrm{spar}} = \sum_{i} \left(
+            \text{FATReLU}(\mathbf{x}_{i}) +
+            \left( \frac{1}{T_{i}} \right)^{2}
+        \right)
+    \]
+};
+\node[stagelabel, above=8pt of stage3.north] (label3) {3};
+
+% ---------- Arrows between stages ----------
+\draw[arrow] (stage1.east) -- (stage2.west);
+\draw[arrow] (stage2.east) -- (stage3.west);
+
+\end{tikzpicture}

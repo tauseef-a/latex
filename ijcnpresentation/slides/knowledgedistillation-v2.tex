@@ -1,0 +1,46 @@
+\begin{frame}{Optimizing AI models for Edge}
+\framesubtitle{Speech-To-Text Models}
+
+\begin{block}{Knowledge Distillation}
+
+\begin{columns}[c,onlytextwidth]
+
+% ---------- IMAGE ----------
+\begin{column}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/kd1.png}
+\end{column}
+
+% ---------- TABLE ----------
+\begin{column}{0.55\textwidth}
+\centering
+
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+
+{\fontsize{6}{7}\selectfont
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model Architecture} &
+\multicolumn{4}{c}{\textbf{WER}} \\
+\cmidrule(lr){2-5}
+& \textbf{dev-clean} & \textbf{dev-other} & \textbf{test-clean} & \textbf{test-other} \\
+\midrule
+Base (99M)          & 3.90 & 8.41 & 3.90 & 8.30 \\
+Student Model (10M) & 6.50 & 20.1 & 6.60 & 20.60 \\
+\bottomrule
+\end{tabular}
+\par}
+\end{column}
+
+\end{columns}
+
+\end{block}
+
+\begin{flushleft}
+\tiny Source: Yang et al., 2023
+\end{flushleft}
+
+\end{frame}

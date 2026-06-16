@@ -1,0 +1,58 @@
+\documentclass[aspectratio=16 9]{beamer}
+\usetheme{Berlin}
+\usecolortheme{dove}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\input{template}
+\title[Neuromorphic Mamba
+Models for Efficient Speech Recognition]{Spiking and Event-driven Neuromorphic Mamba
+Models for Efficient Speech Recognition}
+%\subtitle[]{}
+\author[IJCN Maastricht, 2026]{\textbf{Tauseef Ahmed}\inst{1}, Tao Sun\inst{2}, Jeronimo~Castrillon\inst{1,4},Kanishkan Vadivel\inst{3},Guangzhi Tang\inst{2}}
+\institute[\textbf{\insertframenumber}\,/\,\inserttotalframenumber]{ \inst{1} Technische Universität Dresden, \inst{2} Maastricht University, \inst{3} IMEC, \inst{4} ScaDS.AI}
+\date[]{IEEE IJCN 2026, Maastricht\\ June 26, 2026}
+\titlegraphic{\centering\includegraphics[height=0.5cm]{tex/logo/TUD-Logo_RGB_kurz_blau.pdf}\hfil\includegraphics[height=0.5cm]{tex/logo/Maastricht_University_logo.pdf}\hfil\includegraphics[height=0.5cm]{tex/logo/LOGO-IMEC_black.pdf}\hfil\includegraphics[height=0.5cm]{tex/logo/cc-logo-small.pdf}\hfil\includegraphics[height=0.5cm]{tex/logo/DDC-Logo_RGB_kurz_farbe.pdf}}
+\setbeamertemplate{title graphic}{
+    \inserttitlegraphic
+    \vspace{3mm}
+}
+
+
+
+\begin{document}
+
+{
+\setbeamertemplate{footline}{}%
+\setbeamertemplate{headline}{}%
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+}
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Current Research -- Software}
+
+
+\input{slides/techniquesold}
+\input{slides/knowledgedistillation-v2}
+\input{slides/quantization}
+\input{slides/structuressparsity}
+
+
+
+\section{Current Research -- Hardware}
+\input{slides/hardware}
+\input{slides/seneca}
+
+\section{Contributions}
+\input{slides/mambaenc}
+\input{slides/snn}
+
+\section{Result}
+\input{slides/resultsparsity}
+\input{slides/wer}
+
+\end{document}
