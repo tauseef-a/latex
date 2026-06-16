@@ -1,0 +1,41 @@
+
+\documentclass[journal,onecolumn,12pt]{IEEEtran}
+
+
+
+\begin{document}
+\title{Energy Efficient Lowering of Reactive Programs for Heterogenous In-memory Computing (WIP)}
+
+
+%\author{
+%\IEEEauthorblockN{
+%Tauseef Ahmed\IEEEauthorrefmark{1},
+%Jeronimo~Castrillon\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}
+%}\\
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}
+%Chair for Compiler Construction, TU Dresden, Germany}\\
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}
+%Center for Scalable Data Analytics and Artificial Intelligence (ScaDS.AI), Dresden, Germany}
+%}
+
+
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+
+Cyber-physical systems increasingly rely on distributed pipelines that execute AI inference over multiple input sources, as exemplified by autonomous driving, industrial automation, and robotics applications. These reactive workloads must satisfy stringent timing constraints while maintaining deterministic behavior despite exploiting parallel execution. Lingua Franca (LF)\cite{10.1145/3448128} is a reactor-oriented coordination language that provides a deterministic concurrency model capable of automatically exposing parallelism without sacrificing predictability, making it a compelling programming model for such safety and time-critical applications. At the same time, emerging heterogeneous architectures that integrate in-memory computing(IMC) offer a promising alternative to conventional von-Neumann systems by reducing data movement and significantly improving energy efficiency. However, effectively programming and mapping reactive applications onto these architectures remains an open challenge.
+
+This work-in-progress explores the compilation and deployment of deterministic reactive applications onto multicore systems with in-memory compute nodes. Our objective is to develop efficient scheduling strategies that map reactive application execution graphs across conventional processor cores with IMC units\cite{10.1109/TC.2022.3230285} while preserving the deterministic semantics of the reactive programming model. Furthermore, we evaluate the resulting performance and energy efficiency relative to the deployments on architectures without in-memory computing to quantify the benefits of IMC acceleration. To support these goals, we develop an MLIR-based compilation flow that lowers Lingua Franca programs to Cinnamon\cite{10.1145/3622781.3674189}, a compiler infrastructure designed to progressively optimize and map computations across heterogeneous compute-in-memory and compute-near-memory devices. By demonstrating this end-to-end lowering pipeline, our work establishes the feasibility of executing deterministic reactive applications on IMC-enabled multicore platforms and lays the foundation for future investigations into scheduling strategies and energy-aware compilation for edge cyber-physical systems.
+
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+%\begin{IEEEkeywords}
+%IEEE, IEEEtran, journal, \LaTeX, paper, template.
+%\end{IEEEkeywords}
+\bibliography{references}
+\bibliographystyle{IEEEtran}
+
+\end{document}
